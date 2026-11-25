@@ -1,0 +1,31 @@
+# Inputs that push.sh copies to /workspace/rlp on a pod, besides the code (rlp/ and scripts/ always go).
+# One path per line, relative to the repo root. A folder is copied whole. Edit per pod, or pass another list:
+#   bash scripts/flag/night/push.sh HOST PORT my_list.txt
+# .env, .venv and __pycache__ are never copied, listed or not.
+
+# Single-turn activations and directions of 24 November (README_agents.md, interface 4), about 185 MB
+cache/flag/onp/means_36_all.npy
+cache/flag/onp/meta_all.json
+cache/flag/onp/dirs_cf_36.npz
+cache/flag/onp/write_cands_36.npz
+cache/flag/onp/fitw_w2.pt
+cache/flag/onp/cov_36.pt
+
+# Goodfire's data (interface 5), about 13 MB
+data/goodfire/prepared_dl/synthetic_data/prepared/records.jsonl
+data/goodfire/contrasts.json
+
+# Add what the stages need, for example (not copied unless uncommented):
+# cache/flag/base_rate                      # 211 MB: existing completions, for text scoring and the 24 November pairing
+# cache/flag/onp/h36_env2.npz
+# cache/flag/onp/h36_env2.json
+
+# Added by the lead, 25 November: inputs for H1 (gradient pass, text scoring) and V1
+cache/flag/resample
+cache/flag/onp/noise_vec.pt
+cache/flag/base_rate
+data/general_questions.json
+data/flag/generic.json
+data/leetcode_test_medhard.jsonl
+data/cmp
+data/manif

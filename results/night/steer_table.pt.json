@@ -1,0 +1,971 @@
+{
+ "sha256": "41aac2a090a45b204d22f4b6c047da7ec1751929f92558705c972fe1d3032181",
+ "mode": "v1",
+ "layer": 36,
+ "norm": 20.0,
+ "width": 5120,
+ "K": 68,
+ "seed": 20261125,
+ "canary_norm": 400.0,
+ "inputs": {
+  "probe": {
+   "path": "cache/flag/onp/dirs_cf_36.npz",
+   "sha256_16": "0203917d7ef0a4b0"
+  },
+  "sprobe": {
+   "path": "cache/flag/onp/write_cands_36.npz",
+   "sha256_16": "ea4acffc5200e494"
+  },
+  "fitv": {
+   "path": "cache/flag/onp/fitw_w2.pt",
+   "sha256_16": "c58d977fd8c63b42"
+  },
+  "gf": {
+   "path": "cache/flag/gf27/dirs_36.npz",
+   "sha256_16": "b0809835b9ef3a44"
+  },
+  "dom": {
+   "path": "cache/flag/onp/dirs_cf_36.npz",
+   "sha256_16": "0203917d7ef0a4b0"
+  },
+  "lda": {
+   "path": "cache/flag/onp/dirs_cf_36.npz",
+   "sha256_16": "0203917d7ef0a4b0"
+  },
+  "noise": {
+   "path": "cache/flag/onp/noise_vec.pt",
+   "sha256_16": "40a2db8161ee4293"
+  },
+  "cov": {
+   "path": "cache/flag/onp/cov_36.pt",
+   "sha256_16": "2fdb14fcc8393f31"
+  }
+ },
+ "skipped": [
+  {
+   "name": "lin",
+   "why": "no path given"
+  }
+ ],
+ "sets": {
+  "random": [
+   "iso0_add",
+   "iso0_sub",
+   "iso1_add",
+   "iso1_sub",
+   "iso2_add",
+   "iso2_sub",
+   "iso3_add",
+   "iso3_sub",
+   "iso4_add",
+   "iso4_sub",
+   "iso5_add",
+   "iso5_sub",
+   "iso6_add",
+   "iso6_sub",
+   "iso7_add",
+   "iso7_sub",
+   "sig0_add",
+   "sig0_sub",
+   "sig1_add",
+   "sig1_sub",
+   "sig2_add",
+   "sig2_sub",
+   "sig3_add",
+   "sig3_sub",
+   "sig4_add",
+   "sig4_sub",
+   "sig5_add",
+   "sig5_sub",
+   "sig6_add",
+   "sig6_sub",
+   "sig7_add",
+   "sig7_sub"
+  ],
+  "random_iso": [
+   "iso0_add",
+   "iso0_sub",
+   "iso1_add",
+   "iso1_sub",
+   "iso2_add",
+   "iso2_sub",
+   "iso3_add",
+   "iso3_sub",
+   "iso4_add",
+   "iso4_sub",
+   "iso5_add",
+   "iso5_sub",
+   "iso6_add",
+   "iso6_sub",
+   "iso7_add",
+   "iso7_sub"
+  ],
+  "random_sig": [
+   "sig0_add",
+   "sig0_sub",
+   "sig1_add",
+   "sig1_sub",
+   "sig2_add",
+   "sig2_sub",
+   "sig3_add",
+   "sig3_sub",
+   "sig4_add",
+   "sig4_sub",
+   "sig5_add",
+   "sig5_sub",
+   "sig6_add",
+   "sig6_sub",
+   "sig7_add",
+   "sig7_sub"
+  ],
+  "proj": [
+   "iso0_proj",
+   "iso1_proj",
+   "iso2_proj",
+   "iso3_proj",
+   "sig0_proj",
+   "sig1_proj",
+   "sig2_proj",
+   "sig3_proj",
+   "probe_proj",
+   "sprobe_proj",
+   "fitv_proj",
+   "gf_proj",
+   "dom_proj",
+   "lda_proj",
+   "noise_proj"
+  ],
+  "candidates": [
+   "probe",
+   "sprobe",
+   "fitv",
+   "gf",
+   "dom",
+   "lda",
+   "noise"
+  ],
+  "named": [
+   "sprobe",
+   "fitv",
+   "gf"
+  ],
+  "main": [
+   "base",
+   "iso0_add",
+   "iso0_sub",
+   "iso1_add",
+   "iso1_sub",
+   "iso2_add",
+   "iso2_sub",
+   "iso3_add",
+   "iso3_sub",
+   "iso4_add",
+   "iso4_sub",
+   "iso5_add",
+   "iso5_sub",
+   "iso6_add",
+   "iso6_sub",
+   "iso7_add",
+   "iso7_sub",
+   "sig0_add",
+   "sig0_sub",
+   "sig1_add",
+   "sig1_sub",
+   "sig2_add",
+   "sig2_sub",
+   "sig3_add",
+   "sig3_sub",
+   "sig4_add",
+   "sig4_sub",
+   "sig5_add",
+   "sig5_sub",
+   "sig6_add",
+   "sig6_sub",
+   "sig7_add",
+   "sig7_sub",
+   "iso0_proj",
+   "iso1_proj",
+   "iso2_proj",
+   "iso3_proj",
+   "sig0_proj",
+   "sig1_proj",
+   "sig2_proj",
+   "sig3_proj",
+   "probe_sub",
+   "probe_proj",
+   "sprobe_sub",
+   "sprobe_proj",
+   "fitv_sub",
+   "fitv_proj",
+   "gf_sub",
+   "gf_proj",
+   "dom_sub",
+   "dom_proj",
+   "lda_sub",
+   "lda_proj",
+   "noise_sub",
+   "noise_proj",
+   "sprobe_add",
+   "fitv_add",
+   "gf_add"
+  ],
+  "fitting": [
+   "base",
+   "iso0_sub",
+   "iso1_sub",
+   "iso2_sub",
+   "iso3_sub",
+   "iso4_sub",
+   "iso5_sub",
+   "iso6_sub",
+   "iso7_sub",
+   "sig0_sub",
+   "sig1_sub",
+   "sig2_sub",
+   "sig3_sub",
+   "sig4_sub",
+   "sig5_sub",
+   "sig6_sub",
+   "sig7_sub",
+   "probe_sub",
+   "sprobe_sub",
+   "fitv_sub",
+   "gf_sub",
+   "dom_sub",
+   "lda_sub",
+   "noise_sub"
+  ],
+  "pairing": [
+   "noise_add",
+   "noise_sub",
+   "probe_add",
+   "probe_sub"
+  ],
+  "story": [
+   "base",
+   "fitv_add",
+   "fitv_sub"
+  ],
+  "rollout": [
+   "base",
+   "sprobe_sub",
+   "iso0_sub"
+  ]
+ },
+ "cos": {
+  "probe": {
+   "iso0": -0.0043,
+   "iso1": -0.0094,
+   "iso2": -0.0216,
+   "iso3": 0.0088,
+   "iso4": 0.0028,
+   "iso5": -0.0041,
+   "iso6": 0.0035,
+   "iso7": -0.0113,
+   "sig0": -0.0281,
+   "sig1": -0.0269,
+   "sig2": -0.0156,
+   "sig3": 0.0097,
+   "sig4": 0.0084,
+   "sig5": 0.0094,
+   "sig6": -0.0044,
+   "sig7": -0.0006,
+   "sprobe": 0.3739,
+   "fitv": 0.3404,
+   "gf": 0.0582,
+   "dom": 0.3097,
+   "lda": 0.3201,
+   "noise": 0.2788
+  },
+  "sprobe": {
+   "iso0": 0.0088,
+   "iso1": 0.0056,
+   "iso2": 0.0036,
+   "iso3": 0.0171,
+   "iso4": 0.0006,
+   "iso5": 0.001,
+   "iso6": 0.0029,
+   "iso7": -0.0185,
+   "sig0": -0.2488,
+   "sig1": -0.1068,
+   "sig2": -0.1014,
+   "sig3": 0.1051,
+   "sig4": -0.0504,
+   "sig5": 0.0383,
+   "sig6": 0.1349,
+   "sig7": 0.0039,
+   "probe": 0.3739,
+   "fitv": 0.7361,
+   "gf": 0.0228,
+   "dom": 0.5951,
+   "lda": 0.0888,
+   "noise": 0.7229
+  },
+  "fitv": {
+   "iso0": 0.001,
+   "iso1": 0.0157,
+   "iso2": 0.0077,
+   "iso3": 0.031,
+   "iso4": 0.0128,
+   "iso5": -0.0085,
+   "iso6": 0.0116,
+   "iso7": -0.0233,
+   "sig0": -0.2189,
+   "sig1": -0.357,
+   "sig2": -0.2205,
+   "sig3": -0.0723,
+   "sig4": 0.1606,
+   "sig5": 0.1076,
+   "sig6": -0.0509,
+   "sig7": -0.0163,
+   "probe": 0.3404,
+   "sprobe": 0.7361,
+   "gf": 0.0297,
+   "dom": 0.5012,
+   "lda": 0.0899,
+   "noise": 0.5701
+  },
+  "gf": {
+   "iso0": 0.0045,
+   "iso1": -0.0167,
+   "iso2": 0.009,
+   "iso3": 0.0128,
+   "iso4": -0.014,
+   "iso5": 0.0055,
+   "iso6": 0.0041,
+   "iso7": 0.0046,
+   "sig0": 0.0879,
+   "sig1": 0.0521,
+   "sig2": 0.0941,
+   "sig3": -0.0836,
+   "sig4": 0.1479,
+   "sig5": -0.0862,
+   "sig6": 0.0039,
+   "sig7": 0.0377,
+   "probe": 0.0582,
+   "sprobe": 0.0228,
+   "fitv": 0.0297,
+   "dom": -0.0423,
+   "lda": 0.015,
+   "noise": 0.0886
+  },
+  "dom": {
+   "iso0": 0.0076,
+   "iso1": 0.0176,
+   "iso2": -0.0019,
+   "iso3": -0.0181,
+   "iso4": -0.0117,
+   "iso5": 0.0057,
+   "iso6": -0.0237,
+   "iso7": -0.0161,
+   "sig0": -0.0807,
+   "sig1": -0.1055,
+   "sig2": 0.1137,
+   "sig3": 0.3268,
+   "sig4": -0.0286,
+   "sig5": 0.0115,
+   "sig6": 0.2473,
+   "sig7": 0.1491,
+   "probe": 0.3097,
+   "sprobe": 0.5951,
+   "fitv": 0.5012,
+   "gf": -0.0423,
+   "lda": 0.3006,
+   "noise": 0.6249
+  },
+  "lda": {
+   "iso0": -0.0079,
+   "iso1": 0.0107,
+   "iso2": -0.003,
+   "iso3": -0.0054,
+   "iso4": 0.0074,
+   "iso5": 0.0291,
+   "iso6": -0.03,
+   "iso7": 0.0064,
+   "sig0": -0.0051,
+   "sig1": -0.0073,
+   "sig2": 0.0008,
+   "sig3": 0.0044,
+   "sig4": 0.0048,
+   "sig5": 0.003,
+   "sig6": 0.003,
+   "sig7": -0.0011,
+   "probe": 0.3201,
+   "sprobe": 0.0888,
+   "fitv": 0.0899,
+   "gf": 0.015,
+   "dom": 0.3006,
+   "noise": 0.0672
+  },
+  "noise": {
+   "iso0": 0.002,
+   "iso1": 0.0177,
+   "iso2": 0.0077,
+   "iso3": 0.0151,
+   "iso4": 0.0002,
+   "iso5": -0.002,
+   "iso6": 0.0033,
+   "iso7": -0.0029,
+   "sig0": -0.1684,
+   "sig1": 0.0515,
+   "sig2": 0.1548,
+   "sig3": 0.341,
+   "sig4": -0.1733,
+   "sig5": -0.2344,
+   "sig6": 0.4079,
+   "sig7": 0.3286,
+   "probe": 0.2788,
+   "sprobe": 0.7229,
+   "fitv": 0.5701,
+   "gf": 0.0886,
+   "dom": 0.6249,
+   "lda": 0.0672
+  }
+ },
+ "rows": [
+  {
+   "vid": 0,
+   "name": "base",
+   "kind": "base",
+   "source": "",
+   "add_norm": 0.0,
+   "proj": false
+  },
+  {
+   "vid": 1,
+   "name": "iso0_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,0]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 2,
+   "name": "iso0_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,0]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 3,
+   "name": "iso1_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,1]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 4,
+   "name": "iso1_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,1]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 5,
+   "name": "iso2_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,2]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 6,
+   "name": "iso2_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,2]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 7,
+   "name": "iso3_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,3]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 8,
+   "name": "iso3_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,3]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 9,
+   "name": "iso4_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,4]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 10,
+   "name": "iso4_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,4]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 11,
+   "name": "iso5_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,5]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 12,
+   "name": "iso5_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,5]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 13,
+   "name": "iso6_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,6]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 14,
+   "name": "iso6_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,6]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 15,
+   "name": "iso7_add",
+   "kind": "rand",
+   "source": "gauss[20261125,0,7]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 16,
+   "name": "iso7_sub",
+   "kind": "rand",
+   "source": "gauss[20261125,0,7]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 17,
+   "name": "sig0_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,0]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 18,
+   "name": "sig0_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,0]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 19,
+   "name": "sig1_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,1]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 20,
+   "name": "sig1_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,1]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 21,
+   "name": "sig2_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,2]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 22,
+   "name": "sig2_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,2]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 23,
+   "name": "sig3_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,3]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 24,
+   "name": "sig3_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,3]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 25,
+   "name": "sig4_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,4]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 26,
+   "name": "sig4_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,4]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 27,
+   "name": "sig5_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,5]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 28,
+   "name": "sig5_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,5]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 29,
+   "name": "sig6_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,6]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 30,
+   "name": "sig6_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,6]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 31,
+   "name": "sig7_add",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,7]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 32,
+   "name": "sig7_sub",
+   "kind": "rand",
+   "source": "cov @ gauss[20261125,1,7]",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 33,
+   "name": "iso0_proj",
+   "kind": "rand_proj",
+   "source": "gauss[20261125,0,0]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 34,
+   "name": "iso1_proj",
+   "kind": "rand_proj",
+   "source": "gauss[20261125,0,1]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 35,
+   "name": "iso2_proj",
+   "kind": "rand_proj",
+   "source": "gauss[20261125,0,2]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 36,
+   "name": "iso3_proj",
+   "kind": "rand_proj",
+   "source": "gauss[20261125,0,3]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 37,
+   "name": "sig0_proj",
+   "kind": "rand_proj",
+   "source": "cov @ gauss[20261125,1,0]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 38,
+   "name": "sig1_proj",
+   "kind": "rand_proj",
+   "source": "cov @ gauss[20261125,1,1]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 39,
+   "name": "sig2_proj",
+   "kind": "rand_proj",
+   "source": "cov @ gauss[20261125,1,2]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 40,
+   "name": "sig3_proj",
+   "kind": "rand_proj",
+   "source": "cov @ gauss[20261125,1,3]",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 41,
+   "name": "probe_sub",
+   "kind": "cand",
+   "source": "cache/flag/onp/dirs_cf_36.npz:probe",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 42,
+   "name": "probe_proj",
+   "kind": "cand_proj",
+   "source": "cache/flag/onp/dirs_cf_36.npz:probe",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 43,
+   "name": "sprobe_sub",
+   "kind": "cand",
+   "source": "cache/flag/onp/write_cands_36.npz:Stok_probe",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 44,
+   "name": "sprobe_proj",
+   "kind": "cand_proj",
+   "source": "cache/flag/onp/write_cands_36.npz:Stok_probe",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 45,
+   "name": "fitv_sub",
+   "kind": "cand",
+   "source": "cache/flag/onp/fitw_w2.pt:v",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 46,
+   "name": "fitv_proj",
+   "kind": "cand_proj",
+   "source": "cache/flag/onp/fitw_w2.pt:v",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 47,
+   "name": "gf_sub",
+   "kind": "cand",
+   "source": "cache/flag/gf27/dirs_36.npz:gf_pool",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 48,
+   "name": "gf_proj",
+   "kind": "cand_proj",
+   "source": "cache/flag/gf27/dirs_36.npz:gf_pool",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 49,
+   "name": "dom_sub",
+   "kind": "cand",
+   "source": "cache/flag/onp/dirs_cf_36.npz:dom",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 50,
+   "name": "dom_proj",
+   "kind": "cand_proj",
+   "source": "cache/flag/onp/dirs_cf_36.npz:dom",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 51,
+   "name": "lda_sub",
+   "kind": "cand",
+   "source": "cache/flag/onp/dirs_cf_36.npz:lda",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 52,
+   "name": "lda_proj",
+   "kind": "cand_proj",
+   "source": "cache/flag/onp/dirs_cf_36.npz:lda",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 53,
+   "name": "noise_sub",
+   "kind": "cand",
+   "source": "cache/flag/onp/noise_vec.pt",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 54,
+   "name": "noise_proj",
+   "kind": "cand_proj",
+   "source": "cache/flag/onp/noise_vec.pt",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 55,
+   "name": "sprobe_add",
+   "kind": "cand_add",
+   "source": "cache/flag/onp/write_cands_36.npz:Stok_probe",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 56,
+   "name": "fitv_add",
+   "kind": "cand_add",
+   "source": "cache/flag/onp/fitw_w2.pt:v",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 57,
+   "name": "gf_add",
+   "kind": "cand_add",
+   "source": "cache/flag/gf27/dirs_36.npz:gf_pool",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 58,
+   "name": "noise_add",
+   "kind": "pair",
+   "source": "cache/flag/onp/noise_vec.pt",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 59,
+   "name": "probe_add",
+   "kind": "pair",
+   "source": "cache/flag/onp/dirs_cf_36.npz:probe",
+   "add_norm": 20.0,
+   "proj": false
+  },
+  {
+   "vid": 60,
+   "name": "base_dup",
+   "kind": "canary_base",
+   "source": "",
+   "add_norm": 0.0,
+   "proj": false
+  },
+  {
+   "vid": 61,
+   "name": "canary_a",
+   "kind": "canary",
+   "source": "gauss[20261125,2,0]",
+   "add_norm": 400.0,
+   "proj": false
+  },
+  {
+   "vid": 62,
+   "name": "canary_b",
+   "kind": "canary",
+   "source": "gauss[20261125,2,1]",
+   "add_norm": 400.0,
+   "proj": false
+  },
+  {
+   "vid": 63,
+   "name": "canary_c",
+   "kind": "canary",
+   "source": "gauss[20261125,2,2]",
+   "add_norm": 400.0,
+   "proj": false
+  },
+  {
+   "vid": 64,
+   "name": "canary_a100",
+   "kind": "canary",
+   "source": "canary_a",
+   "add_norm": 100.0,
+   "proj": false
+  },
+  {
+   "vid": 65,
+   "name": "canary_proj",
+   "kind": "canary_proj",
+   "source": "canary_a",
+   "add_norm": 0.0,
+   "proj": true
+  },
+  {
+   "vid": 66,
+   "name": "canary_addproj",
+   "kind": "canary_addproj",
+   "source": "canary_a",
+   "add_norm": 100.0,
+   "proj": true
+  },
+  {
+   "vid": 67,
+   "name": "canary_proj_mu",
+   "kind": "canary_proj_mu",
+   "source": "cache/flag/onp/cov_36.pt:mu",
+   "add_norm": 0.0,
+   "proj": true
+  }
+ ]
+}

@@ -1,0 +1,578 @@
+{
+ "table": "cache/flag/night/steer_table.pt",
+ "sha256": "41aac2a090a45b204d22f4b6c047da7ec1751929f92558705c972fe1d3032181",
+ "time": 1795591854.361918,
+ "checks": {
+  "loaded": {
+   "K": 68,
+   "has_proj": true,
+   "pid": 10645
+  },
+  "rows_tested": [
+   "base",
+   "base_dup",
+   "canary_a",
+   "canary_b",
+   "canary_c",
+   "canary_a100",
+   "canary_proj",
+   "canary_addproj",
+   "canary_proj_mu",
+   "sprobe_sub",
+   "sprobe_add",
+   "fitv_sub",
+   "fitv_add",
+   "gf_sub",
+   "gf_add",
+   "iso0_add",
+   "iso0_sub",
+   "sig0_add",
+   "sig0_sub",
+   "probe_sub",
+   "noise_sub",
+   "sprobe_proj",
+   "iso0_proj"
+  ],
+  "identity": {
+   "repeat": 0.0,
+   "base_dup": 0.0,
+   "tol": 0.3,
+   "ref": 0.0,
+   "ref_model": "Qwen/Qwen3.8-27B"
+  },
+  "dist_from_base": {
+   "base": 0.0,
+   "base_dup": 0.0,
+   "canary_a": 30.0,
+   "canary_b": 30.0,
+   "canary_c": 30.0,
+   "canary_a100": 11.7559,
+   "canary_proj": 0.1974,
+   "canary_addproj": 0.1891,
+   "canary_proj_mu": 2.0594,
+   "sprobe_sub": 1.6679,
+   "sprobe_add": 8.7452,
+   "fitv_sub": 1.4109,
+   "fitv_add": 1.3574,
+   "gf_sub": 1.711,
+   "gf_add": 3.8684,
+   "iso0_add": 1.2527,
+   "iso0_sub": 1.4339,
+   "sig0_add": 1.4048,
+   "sig0_sub": 3.1106,
+   "probe_sub": 1.1192,
+   "noise_sub": 1.1752,
+   "sprobe_proj": 0.5124,
+   "iso0_proj": 0.192
+  },
+  "distinct": {
+   "threshold": 0.02,
+   "rows": [
+    "sprobe_sub",
+    "sprobe_add",
+    "fitv_sub",
+    "fitv_add",
+    "gf_sub",
+    "gf_add",
+    "iso0_add",
+    "iso0_sub",
+    "sig0_add",
+    "sig0_sub",
+    "probe_sub",
+    "noise_sub"
+   ],
+   "not_distinct": [],
+   "pairs_not_distinct": []
+  },
+  "canary_dist": {
+   "canary_a": 30.0,
+   "canary_b": 30.0,
+   "canary_c": 30.0,
+   "canary_a100": 11.75590968132019
+  },
+  "calibration": {
+   "tokens_per_number": 5.095,
+   "m_long": [
+    1200,
+    2600
+   ],
+   "runs": [
+    {
+     "kind": "count",
+     "M": 8,
+     "k": 16,
+     "vid": 0,
+     "name": "base",
+     "ok": true,
+     "text": " 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, ",
+     "prompt_tokens": 45,
+     "completion_tokens": 88,
+     "secs": 3.1
+    },
+    {
+     "kind": "count",
+     "M": 250,
+     "k": 16,
+     "vid": 0,
+     "name": "base",
+     "ok": true,
+     "text": " 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271",
+     "prompt_tokens": 1163,
+     "completion_tokens": 104,
+     "secs": 3.9
+    },
+    {
+     "kind": "count",
+     "M": 1200,
+     "k": 16,
+     "vid": 0,
+     "name": "base",
+     "ok": true,
+     "text": " 1201, 1202, 1203, 1204, 1205, 1206, 1207, 1208, 1209, 1210, 1211, 1212, 1213, 1214, 1215, 1216, 1217, 1218, 1219, 1220,",
+     "prompt_tokens": 6114,
+     "completion_tokens": 120,
+     "secs": 5.6
+    }
+   ]
+  },
+  "canary_alone": {
+   "kind": "count",
+   "M": 60,
+   "k": 16,
+   "vid": 61,
+   "name": "canary_a",
+   "ok": false,
+   "text": "\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982acco\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982\u6982accoaccoaccoaccoaccoaccoaccoaccoacco\u6982\u6982\u6982\u6982\u6982\u6982awei\u6982acco\u6982accoaccoaccoaccoaccoacco\u6982",
+   "prompt_tokens": 252,
+   "completion_tokens": 88,
+   "secs": 3.1
+  },
+  "preemptions": 0.0,
+  "concurrency": {
+   "n": 276,
+   "max_d_own": 0.556459903717041,
+   "median_d_own": 0.10820674896240234,
+   "nearest_is_own": 230,
+   "wrong": [],
+   "n_wrong": 0
+  },
+  "counting": {
+   "base": {
+    "n": 30,
+    "ok": 22
+   },
+   "base_dup": {
+    "n": 29,
+    "ok": 23
+   },
+   "canary_a": {
+    "n": 16,
+    "ok": 0
+   },
+   "canary_b": {
+    "n": 17,
+    "ok": 0
+   },
+   "canary_c": {
+    "n": 13,
+    "ok": 0
+   },
+   "fitv_sub": {
+    "n": 1,
+    "ok": 1
+   },
+   "gf_add": {
+    "n": 3,
+    "ok": 2
+   },
+   "gf_sub": {
+    "n": 2,
+    "ok": 2
+   },
+   "iso0_add": {
+    "n": 4,
+    "ok": 4
+   },
+   "iso0_sub": {
+    "n": 3,
+    "ok": 3
+   },
+   "noise_sub": {
+    "n": 5,
+    "ok": 5
+   },
+   "probe_sub": {
+    "n": 5,
+    "ok": 5
+   },
+   "sig0_add": {
+    "n": 2,
+    "ok": 2
+   },
+   "sig0_sub": {
+    "n": 4,
+    "ok": 4
+   },
+   "sprobe_add": {
+    "n": 4,
+    "ok": 2
+   },
+   "sprobe_sub": {
+    "n": 2,
+    "ok": 2
+   }
+  },
+  "base_quirks": [
+   {
+    "kind": "count",
+    "M": 208,
+    "k": 120,
+    "vid": 60,
+    "name": "base_dup",
+    "ok": false,
+    "text": " 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 222,",
+    "prompt_tokens": 953,
+    "completion_tokens": 728,
+    "secs": 59.1
+   },
+   {
+    "kind": "count",
+    "M": 182,
+    "k": 120,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206,",
+    "prompt_tokens": 823,
+    "completion_tokens": 728,
+    "secs": 60.9
+   },
+   {
+    "kind": "count",
+    "M": 134,
+    "k": 120,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158,",
+    "prompt_tokens": 583,
+    "completion_tokens": 728,
+    "secs": 54.8
+   },
+   {
+    "kind": "count",
+    "M": 106,
+    "k": 120,
+    "vid": 60,
+    "name": "base_dup",
+    "ok": false,
+    "text": " 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 11\n\nThe list you provided is incomplete and cuts off at 116. It seems",
+    "prompt_tokens": 443,
+    "completion_tokens": 402,
+    "secs": 49.9
+   },
+   {
+    "kind": "count",
+    "M": 87,
+    "k": 120,
+    "vid": 60,
+    "name": "base_dup",
+    "ok": false,
+    "text": " 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 1",
+    "prompt_tokens": 360,
+    "completion_tokens": 447,
+    "secs": 52.0
+   },
+   {
+    "kind": "count",
+    "M": 19,
+    "k": 120,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,",
+    "prompt_tokens": 88,
+    "completion_tokens": 719,
+    "secs": 63.3
+   },
+   {
+    "kind": "count",
+    "M": 217,
+    "k": 16,
+    "vid": 60,
+    "name": "base_dup",
+    "ok": false,
+    "text": " 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 222, 232, 233, 234, 235, 236, 237",
+    "prompt_tokens": 998,
+    "completion_tokens": 104,
+    "secs": 31.8
+   },
+   {
+    "kind": "count",
+    "M": 24,
+    "k": 120,
+    "vid": 60,
+    "name": "base_dup",
+    "ok": false,
+    "text": " 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54,",
+    "prompt_tokens": 108,
+    "completion_tokens": 728,
+    "secs": 58.8
+   },
+   {
+    "kind": "count",
+    "M": 34,
+    "k": 120,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64,",
+    "prompt_tokens": 148,
+    "completion_tokens": 728,
+    "secs": 54.7
+   },
+   {
+    "kind": "count",
+    "M": 111,
+    "k": 16,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 112, 113, 114, 115, 116, 11\n\nThe list you provided is incomplete and cuts off at 116. It seems like you intended to lis",
+    "prompt_tokens": 468,
+    "completion_tokens": 104,
+    "secs": 39.1
+   },
+   {
+    "kind": "count",
+    "M": 47,
+    "k": 120,
+    "vid": 60,
+    "name": "base_dup",
+    "ok": false,
+    "text": " 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77,",
+    "prompt_tokens": 200,
+    "completion_tokens": 728,
+    "secs": 65.5
+   },
+   {
+    "kind": "count",
+    "M": 8,
+    "k": 120,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, ",
+    "prompt_tokens": 45,
+    "completion_tokens": 728,
+    "secs": 64.8
+   },
+   {
+    "kind": "count",
+    "M": 214,
+    "k": 120,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 222, 232, 233, 234, 235, 236, 237,",
+    "prompt_tokens": 983,
+    "completion_tokens": 728,
+    "secs": 63.6
+   },
+   {
+    "kind": "count",
+    "M": 208,
+    "k": 120,
+    "vid": 0,
+    "name": "base",
+    "ok": false,
+    "text": " 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 222,",
+    "prompt_tokens": 953,
+    "completion_tokens": 728,
+    "secs": 65.6
+   }
+  ],
+  "token_accounting": [
+   {
+    "name": "base",
+    "expected": 89693,
+    "server": 89818,
+    "requests": 42,
+    "ok": true
+   },
+   {
+    "name": "iso0_add",
+    "expected": 2686,
+    "server": 2686,
+    "requests": 16,
+    "ok": true
+   },
+   {
+    "name": "iso0_sub",
+    "expected": 13549,
+    "server": 13549,
+    "requests": 15,
+    "ok": true
+   },
+   {
+    "name": "sig0_add",
+    "expected": 1510,
+    "server": 1510,
+    "requests": 14,
+    "ok": true
+   },
+   {
+    "name": "sig0_sub",
+    "expected": 16686,
+    "server": 16686,
+    "requests": 16,
+    "ok": true
+   },
+   {
+    "name": "iso0_proj",
+    "expected": 264,
+    "server": 264,
+    "requests": 12,
+    "ok": true
+   },
+   {
+    "name": "probe_sub",
+    "expected": 13313,
+    "server": 13313,
+    "requests": 17,
+    "ok": true
+   },
+   {
+    "name": "sprobe_sub",
+    "expected": 1436,
+    "server": 1436,
+    "requests": 14,
+    "ok": true
+   },
+   {
+    "name": "sprobe_proj",
+    "expected": 264,
+    "server": 264,
+    "requests": 12,
+    "ok": true
+   },
+   {
+    "name": "fitv_sub",
+    "expected": 1371,
+    "server": 1371,
+    "requests": 13,
+    "ok": true
+   },
+   {
+    "name": "gf_sub",
+    "expected": 2775,
+    "server": 2775,
+    "requests": 14,
+    "ok": true
+   },
+   {
+    "name": "noise_sub",
+    "expected": 4063,
+    "server": 4063,
+    "requests": 17,
+    "ok": true
+   },
+   {
+    "name": "sprobe_add",
+    "expected": 4274,
+    "server": 4274,
+    "requests": 16,
+    "ok": true
+   },
+   {
+    "name": "fitv_add",
+    "expected": 264,
+    "server": 264,
+    "requests": 12,
+    "ok": true
+   },
+   {
+    "name": "gf_add",
+    "expected": 13144,
+    "server": 13144,
+    "requests": 15,
+    "ok": true
+   },
+   {
+    "name": "base_dup",
+    "expected": 56152,
+    "server": 56154,
+    "requests": 41,
+    "ok": true
+   },
+   {
+    "name": "canary_a",
+    "expected": 24258,
+    "server": 24258,
+    "requests": 28,
+    "ok": true
+   },
+   {
+    "name": "canary_b",
+    "expected": 35265,
+    "server": 35265,
+    "requests": 29,
+    "ok": true
+   },
+   {
+    "name": "canary_c",
+    "expected": 43496,
+    "server": 43496,
+    "requests": 25,
+    "ok": true
+   },
+   {
+    "name": "canary_a100",
+    "expected": 264,
+    "server": 264,
+    "requests": 12,
+    "ok": true
+   },
+   {
+    "name": "canary_proj",
+    "expected": 264,
+    "server": 264,
+    "requests": 12,
+    "ok": true
+   },
+   {
+    "name": "canary_addproj",
+    "expected": 264,
+    "server": 264,
+    "requests": 12,
+    "ok": true
+   },
+   {
+    "name": "canary_proj_mu",
+    "expected": 264,
+    "server": 264,
+    "requests": 12,
+    "ok": true
+   }
+  ],
+  "n_no_vid": 0,
+  "projection": {
+   "addproj_vs_proj": 0.13912606239318848,
+   "addproj_vs_proj_mixed": 0.18201255798339844,
+   "a100_vs_base": 11.75590968132019,
+   "limit": 1.0,
+   "proj_vs_base": 0.19735312461853027,
+   "proj_mu_vs_base": 2.0594305992126465,
+   "exp_proj_vs_base": {
+    "sprobe_proj": 0.5124127864837646,
+    "iso0_proj": 0.19203782081604004
+   },
+   "ok": true
+  }
+ },
+ "add_ok": true,
+ "proj_ok": true,
+ "pass": true,
+ "result": "PASS",
+ "why": "276 mixed fingerprints matched their rows (largest distance 0.556); canaries wrecked 46/46; base counted 45/59; identity repeat 0.000, base_dup 0.000, unpatched reference 0.000; token accounting exact; preemptions 0.0; projection: add-then-project vs project 0.139 (limit 1.00), add alone 11.76"
+}
