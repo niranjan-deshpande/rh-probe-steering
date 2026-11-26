@@ -244,6 +244,9 @@ Files are in `directions/` and `results/night/`.
 
 - **`directions/dirs_cf_36.npz`** — closed-form directions of 24 November at layer 36: `probe` (logistic), `dom`
   (difference of means), `lda`, `sig`, and random controls.
+- **`directions/steering_vector_36.npy`** — **use this one.** The selected steering vector as a single unit vector,
+  with instructions and the selection results in `directions/STEERING_VECTOR.md` (added 26 November). Subtract it at
+  norm 20. It is the same vector as the next entry.
 - **`directions/write_cands_36.npz`**, key `Stok_probe` — **the steering vector in use**: `Σ` times that probe.
   The probe was fitted on four single-turn environments (`length_pad`, `quiz_key`, `leak`, `hardcode`) and on no
   agent data.
@@ -256,9 +259,10 @@ Files are in `directions/` and `results/night/`.
   43 `sprobe_sub`, 47 `gf_sub`, 28 and 32 the random `Σ`-shaped vectors, 55 `sprobe_add`.
 - **`results/night/steer_table_v8.pt` and `v8_cands.npz`** — candidates for the run in section 8.
 
-## 8. The run in progress (started 11:47 pm ET, 25 November)
+## 8. The selection run (11:47 pm ET, 25 November, to 7:00 am ET, 26 November)
 
-Its results are **not** in this snapshot. Code: `scripts/flag/night/v8.sh`, `v8_select.py`, `v8_cands.py`,
+**Finished. Steps 1 and 2 selected candidate A, the vector already in use, at norm 20; see
+`directions/STEERING_VECTOR.md`.** Steps 3 and 4 are not analysed in this snapshot yet. Code: `scripts/flag/night/v8.sh`, `v8_select.py`, `v8_cands.py`,
 `v8_table.py`. The selection rules were written into `v8_select.py` before any of its data existed.
 
 1. **Choose the vector by steering.** Five candidates, all `Σ` times a logistic probe, differing in fitting data:

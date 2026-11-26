@@ -22,6 +22,7 @@ out. Much of the older documentation still describes earlier goals, and the hand
 | Overnight run of 25 Nov 2026 (detection and steering against Goodfire's) | `rlp/flag/results/07_overnight.md` |
 | Charts page | `site/flag-direction.html` |
 | Method | `rlp/flag/METHOD.md` |
+| **The steering vector to use, how to apply it and how it was selected (26 Nov 2026)** | `directions/STEERING_VECTOR.md`, `directions/steering_vector_36.npy` |
 | The directions (probe, `Σ·probe` candidates, Goodfire's at block 36) | `directions/` |
 | Steering table used by the patched vLLM server (68 rows, norm 20) | `results/night/steer_table.pt` and `.pt.json` |
 | Small result files (JSON) | `results/` (copied from `cache/flag/` in the working tree) |
@@ -36,8 +37,8 @@ out. Much of the older documentation still describes earlier goals, and the hand
 Activation caches, the covariance matrix (105 MB), the source data of the environments and benchmarks, completions on
 benchmark test items and API keys are not in the repository. Code paths refer to `cache/flag/...`; the files under
 `results/` and `directions/` are copies from there (`rlp/flag/HANDOFF.md`, section 9, gives the mapping). The run
-started on the night of 25 Nov (vector selection by steering, strength curve, difficulty curve) is in progress and
-its results are not in this snapshot.
+started on the night of 25 Nov has finished: the vector and norm it selected are in `directions/STEERING_VECTOR.md`;
+its difficulty curve and the lower norms for Goodfire's direction are not analysed in this snapshot yet.
 
 ## Running
 
