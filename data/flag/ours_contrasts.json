@@ -1,0 +1,42 @@
+{
+ "i_sup_grant": {
+  "dataset": "ours_support",
+  "span": "act_close",
+  "pos": [
+   "grant"
+  ],
+  "neg": [
+   "honest"
+  ]
+ },
+ "i_sup_extra": {
+  "dataset": "ours_support",
+  "span": "act_close",
+  "pos": [
+   "extra"
+  ],
+  "neg": [
+   "honest"
+  ]
+ },
+ "i_rep_claim": {
+  "dataset": "ours_report",
+  "span": "act_close",
+  "pos": [
+   "claim"
+  ],
+  "neg": [
+   "honest"
+  ]
+ },
+ "i_rep_fab": {
+  "dataset": "ours_report",
+  "span": "act_close",
+  "pos": [
+   "fabricate"
+  ],
+  "neg": [
+   "honest"
+  ]
+ }
+}

@@ -1,5 +1,10 @@
 # Flagging reward-hacking rollouts with a direction (`rlp/flag/`)
 
+> **Read [HANDOFF.md](HANDOFF.md) first if you are new (written 2026-11-25).** Since the evening of 2026-11-25 the
+> priority is **steering**: subtracting one direction so that the model stops reward hacking in agent rollouts while
+> still finishing its tasks. The question below and most of this file describe the earlier detection goal, and the
+> status lines are a history, not the current state. The handoff file says what is and is not tested.
+
 **Question.** Can we build a single activation direction that flags reward-hacking passages in agent rollouts better
 than Goodfire's reward-hacking direction (arXiv 2609.19101)? "Flags" means the following test. We teacher-force a
 frozen model on a rollout, project its residual stream onto the direction, pool the projection over each passage (one
@@ -65,4 +70,9 @@ judge spot-check are not being pursued. The next recipe to try is
 - **Open after the third run:** a flag that works on rollouts (per-step or maximum pooling with a position control),
   honest ImpossibleBench episodes that finish, steering inside rollouts, and concealed hacks. See "What is left" in
   results/07.
+- **Fourth run done (2026-11-25, daytime):** [results/08_rollout_steering.md](results/08_rollout_steering.md).
+  Steering inside rollouts: `Σ·probe` subtracted gives 0 hacks in 32 episodes (unsteered 26 of 32) and every episode
+  finishes honestly; Goodfire's direction and random vectors lower hacking only by derailing the agent. Costs: about
+  3 points on HumanEval and a lower solve rate on benign `save_game`. Open: probe-gated steering or a lower norm to
+  remove that cost. Evaluation in `rollsteer_eval.py`.
 - **Nothing is running and no pod is up.** The next run needs the owner's approval.

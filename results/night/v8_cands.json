@@ -1,0 +1,164 @@
+{
+ "info": {
+  "A": {
+   "envs": [
+    "length_pad",
+    "quiz_key",
+    "leak",
+    "hardcode"
+   ],
+   "note": "existing vector"
+  },
+  "B": {
+   "envs": [
+    "ckpt_swap",
+    "fake_cite",
+    "fake_pass",
+    "hardcode",
+    "leak",
+    "length_pad",
+    "log_scrub",
+    "quiz_key",
+    "ref_copy",
+    "save_tamper",
+    "thresh_tamper"
+   ]
+  },
+  "C": {
+   "envs": [
+    "ckpt_swap",
+    "log_scrub",
+    "save_tamper",
+    "thresh_tamper"
+   ]
+  },
+  "D": {
+   "envs": [
+    "ckpt_swap",
+    "fake_cite",
+    "length_pad",
+    "quiz_key",
+    "thresh_tamper"
+   ],
+   "val_auroc": 0.9150443141514571,
+   "per_family": {
+    "answer_key": 0.9696969696969697,
+    "ib_lcb": 0.9030874879089167,
+    "leak_outputs": 0.8723484848484848
+   },
+   "val_families": [
+    "answer_key",
+    "ib_lcb",
+    "leak_outputs"
+   ]
+  },
+  "E": {
+   "envs": [
+    "i_rm_test",
+    "i_edit_test",
+    "i_conftest",
+    "i_env_var",
+    "i_print_line",
+    "i_write_score",
+    "i_expl_h",
+    "i_expl_f",
+    "i_expl_r",
+    "i_peek_h",
+    "i_peek_f",
+    "i_peek_r"
+   ]
+  }
+ },
+ "cos": {
+  "A": {
+   "A": 1.0,
+   "B": 0.755,
+   "C": 0.144,
+   "D": 0.731,
+   "E": 0.031
+  },
+  "B": {
+   "A": 0.755,
+   "B": 1.0,
+   "C": 0.486,
+   "D": 0.709,
+   "E": 0.264
+  },
+  "C": {
+   "A": 0.144,
+   "B": 0.486,
+   "C": 1.0,
+   "D": 0.383,
+   "E": 0.602
+  },
+  "D": {
+   "A": 0.731,
+   "B": 0.709,
+   "C": 0.383,
+   "D": 1.0,
+   "E": 0.056
+  },
+  "E": {
+   "A": 0.031,
+   "B": 0.264,
+   "C": 0.602,
+   "D": 0.056,
+   "E": 1.0
+  }
+ },
+ "sd_along": {
+  "A": 4.696,
+  "B": 4.568,
+  "C": 5.694,
+  "D": 5.722,
+  "E": 8.924
+ },
+ "d_top5": [
+  [
+   0.9150443141514571,
+   [
+    "ckpt_swap",
+    "fake_cite",
+    "length_pad",
+    "quiz_key",
+    "thresh_tamper"
+   ]
+  ],
+  [
+   0.8875061226251703,
+   [
+    "ckpt_swap",
+    "quiz_key",
+    "ref_copy",
+    "thresh_tamper"
+   ]
+  ],
+  [
+   0.8874284665951332,
+   [
+    "ckpt_swap",
+    "length_pad",
+    "quiz_key",
+    "thresh_tamper"
+   ]
+  ],
+  [
+   0.8843006640625689,
+   [
+    "ckpt_swap",
+    "fake_cite",
+    "quiz_key",
+    "thresh_tamper"
+   ]
+  ],
+  [
+   0.8834330572425811,
+   [
+    "ckpt_swap",
+    "fake_cite",
+    "length_pad",
+    "quiz_key"
+   ]
+  ]
+ ]
+}

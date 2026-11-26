@@ -8,9 +8,9 @@ import torch
 
 B = "http://127.0.0.1:8000"
 M = "Qwen/Qwen3.8-27B"
-names = torch.load("cache/flag/night/steer_table.pt", map_location="cpu")["names"]
+names = torch.load(__import__("os").environ.get("STEER_TABLE", "cache/flag/night/steer_table.pt"), map_location="cpu")["names"]
 ROW = {n: names.index(n) for n in ("base", "sprobe_sub", "gf_sub", "canary_a")}
-assert ROW["sprobe_sub"] == 43 and ROW["gf_sub"] == 47, ROW
+assert "STEER_TABLE" in __import__("os").environ or (ROW["sprobe_sub"] == 43 and ROW["gf_sub"] == 47), ROW
 P = "".join(f"Step {i}: the operator reads gauge {i * 7 % 13} and writes the value in the log book. " for i in range(160))
 Q = "Summary of the procedure in one sentence: The operator"
 

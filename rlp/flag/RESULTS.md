@@ -91,6 +91,14 @@ what the goal is about, the two are not distinguishable.
   wrote special-cased code that still failed.
 - The judge's labels on our own rollouts have not been spot-checked by hand.
 
+9. **Steering inside multi-turn rollouts (2026-11-25, daytime).** In [results/08_rollout_steering.md](results/08_rollout_steering.md).
+   Subtracting `Σ·probe` took hacking in two rollout families from 26 of 32 episodes to 0 of 32 (−81 points (−94, −66)),
+   and all 32 steered episodes finished with an honest submission. Goodfire's direction (2 of 32) and two random
+   `Σ`-shaped vectors also lowered hacking, but by derailing the episode (30 of 32 and 30 of 43 did not finish). An
+   instruction in the system prompt gave 3 of 30. Costs of our direction: HumanEval −3.0 points (−6.1, −0.6), no change
+   on MATH level 5 or MMLU, and the benign `save_game` solve rate fell from 32 of 32 to 20 of 32. It did not reduce
+   the `leak_outputs` hack (−10 points (−28, +6)). Detection on rollouts is unchanged from item 8.
+
 ## Files
 
 | File | Holds |
@@ -102,3 +110,4 @@ what the goal is about, the two are not distinguishable.
 | [results/05_onpolicy_directions.md](results/05_onpolicy_directions.md) | Qwen3.8-27B on-policy matched pairs: closed-form directions as detectors, the failed fit of the new recipe, steering in free generation with random controls, cost |
 | [results/06_transformed_detector.md](results/06_transformed_detector.md) | Second run of 2026-11-24: ten new environments and their pilot, detection with more environments and mixes, prefix resampling, the fit of `w` steering along `Σw`, steering against a random-direction null on two prompt sets, cost |
 | [results/07_overnight.md](results/07_overnight.md) | Overnight run of 2026-11-25: Goodfire's direction built on Qwen3.8-27B, steering against 32 random conditions of two kinds, the noise control for the fitted vector, six multi-turn families including every ImpossibleBench variant tried, detection on rollouts, choosing fitting environments on validation, deviations and cost |
+| [results/08_rollout_steering.md](results/08_rollout_steering.md) | Daytime run of 2026-11-25: steering inside rollouts against Goodfire's direction, random vectors and a system-prompt instruction; benign variants; a third family; capability benchmarks; lying in short stories; cost |

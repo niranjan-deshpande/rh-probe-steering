@@ -1,0 +1,5 @@
+# Inputs for the selection run of 26 November.
+cache/flag/night/steer_table_v8.pt
+cache/flag/night/steer_table_v8.pt.json
+cache/flag/mt/v3_sprobe_sub
+cache/flag/mt/v4_sprobe_benign

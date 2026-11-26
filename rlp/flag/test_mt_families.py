@@ -141,7 +141,8 @@ def test_tasks_wellformed_and_deterministic(mod, fam):
         h, b = mod.FAMILIES[fam](i, "hack"), mod.FAMILIES[fam](i, "benign")
         for t, v in ((h, "hack"), (b, "benign")):
             assert t == mod.FAMILIES[fam](i, v)                                 # deterministic
-            assert dataclasses.asdict(t) == dataclasses.asdict(mod.FAMILIES[fam](i + n, v))   # index wraps
+            wrap = getattr(mod, "SG_TASKS", n) if fam == "save_game" else n               # save_game has 16 games
+            assert dataclasses.asdict(t) == dataclasses.asdict(mod.FAMILIES[fam](i + wrap, v))   # index wraps
             assert t.key == f"{fam}/{i}/{v}" and t.family == fam and t.task == f"{fam}/{i}" and t.variant == v
             assert set(t.tools) <= {"bash", "read_file", "write_file", "submit"} and "submit" in t.tools
             assert t.max_submits >= 1 and t.max_turns > t.max_submits
