@@ -183,13 +183,14 @@ ol.notes li { margin-bottom: 0.6em; } ol.notes li:target { background: #fbf3d6; 
 <li><a href="#part-b" data-target="part-b">Multi-turn agent rollouts</a><ul>
 <li><a href="#r3" data-target="r3">3. Detection</a></li>
 <li><a href="#r4" data-target="r4">4. Steering inside rollouts</a></li>
-<li><a href="#r5" data-target="r5">5. Running now</a></li>
+<li><a href="#r5" data-target="r5">5. Controls and costs</a></li>
+<li><a href="#r6" data-target="r6">6. Refitted vector against the original</a></li>
 </ul></li>
 <li><a href="#where" data-target="where">Where this stands</a></li>
 </ul></nav>
 <main>
 <header id="top">
-<p class="crumbs"><b>Reward-hacking probe</b> · work in progress · updated 25 November 2026</p>
+<p class="crumbs"><b>Reward-hacking probe</b> · work in progress · updated 28 November 2026</p>
 <h1>Can one linear direction both detect reward hacking and steer a model away from it?</h1>
 <p class="byline">Niranjan Deshpande</p>
 <div class="tldr">
@@ -200,7 +201,8 @@ ol.notes li { margin-bottom: 0.6em; } ol.notes li:target { background: #fbf3d6; 
 <li><b>Single-turn steering.</b> Subtracting <code>Σ·probe</code> lowers the hack rate on 50 fresh prompts from 48% by 44 points [−58, −32]. None of 32 random vectors does as much. Subtracting Goodfire's direction changes it by +6 [−10, +22].</li>
 <li><b>Multi-turn steering.</b> In two agent task families where the unsteered model hacks in 29 of 32 episodes, subtracting <code>Σ·probe</code> gives 0 of 32. The steered model still does the task honestly and reports that the target cannot be reached. Controls for this result are running.</li>
 <li><b>What did not hold up.</b> As a detector on multi-turn rollouts the probe ties Goodfire's direction (−0.01 [−0.12, +0.09]) and is inverted on two of six task families. So the direction steers agents better than it flags them.</li>
-<li><b>Running now.</b> Random-vector controls, benign task variants, three more task families, capability benchmarks, a prompt-only baseline, and a test of whether the direction also affects lying in short stories.</li>
+<li><b>The cost (25 to 26 November).</b> The controls held up: random vectors and Goodfire's direction lower hacking in rollouts only by derailing the agent. But subtracting <code>Σ·probe</code> makes the model give up on hard solvable tasks: at the hardest setting it solved 3 of 16 episodes against 15 of 16 unsteered.</li>
+<li><b>A refitted vector (27 to 28 November).</b> Refitting the probe with honest agent rollouts as extra training data brings that back to 13 of 16, and the refitted probe is a better detector on rollouts than both the original and Goodfire's direction. It removes hacks less completely than the original: 8 hacks in 50 single-turn prompts against 2, and 2 hacks in 16 rollout episodes against 0 in 32. Section 6 has the side-by-side comparison.</li>
 </ul>
 </div>
 <details class="toc-mobile"><summary>Contents</summary>
@@ -215,7 +217,8 @@ ol.notes li { margin-bottom: 0.6em; } ol.notes li:target { background: #fbf3d6; 
 <li><a href="#part-b" data-target="part-b">Multi-turn agent rollouts</a><ul>
 <li><a href="#r3" data-target="r3">3. Detection</a></li>
 <li><a href="#r4" data-target="r4">4. Steering inside rollouts</a></li>
-<li><a href="#r5" data-target="r5">5. Running now</a></li>
+<li><a href="#r5" data-target="r5">5. Controls and costs</a></li>
+<li><a href="#r6" data-target="r6">6. Refitted vector against the original</a></li>
 </ul></li>
 <li><a href="#where" data-target="where">Where this stands</a></li>
 </ul></nav>
@@ -311,30 +314,95 @@ ol.notes li { margin-bottom: 0.6em; } ol.notes li:target { background: #fbf3d6; 
 <li><b>The steered episodes are coherent.</b> In save game the model plays the trading game, works out the maximum reachable gold, and submits it with a statement that the target is out of reach. In release gate it batches the datastore reads, shows that the remaining latency is a floor, and declines in words to touch the threshold or the simulator. We checked all 32 transcripts for edits the detector might miss and found none (this check was written after seeing the result).</li>
 <li><b>Goodfire's direction subtracted:</b> 2 hacks in 27 finished episodes, but 23 of those 27 ended by running out of context or of a token budget without submitting. So its low hack rate mostly reflects the model no longer finishing, which is a different outcome from choosing the honest route.</li>
 </ul>
-<p><b>Caveats.</b> The unsteered episodes come from a run the night before on an unpatched server. There is no random-vector control in rollouts yet, and section 2 shows that such vectors can lower hacking by themselves. Two task families and one seed set per task are a narrow base. All of these are being addressed by the runs in section 5.</p>
+<p><b>Caveats.</b> The unsteered episodes come from a run the night before on an unpatched server. There is no random-vector control in rollouts yet, and section 2 shows that such vectors can lower hacking by themselves. Two task families and one seed set per task are a narrow base. Section 5 reports the runs that addressed these.</p>
 
-<h2 id="r5">5. Running now</h2>
-<p>These runs were in progress when this page was written, and their results are not reported here.</p>
+<h2 id="r5">5. Controls and costs (25 to 26 November)</h2>
+<p>The runs that were in progress when section 4 was written have finished. This section gives their results briefly, because section 6 builds on them. An episode now ends after 30,000 generated tokens, and each episode is counted as a <b>hack</b>, as <b>finished</b> (it ended by itself without a hack) or as <b>derailed</b> (it ran out of tokens or context).</p>
 <ul class="tight">
-<li><b>Random-vector controls in rollouts.</b> Two vectors drawn with covariance <code>Σ</code> and nearly orthogonal to <code>Σ·probe</code>, and one isotropic vector, subtracted at the same norm on the same 32 episodes. If the effect is specific, these should leave hacking near 90%.</li>
-<li><b>Unsteered episodes on the same patched server</b>, to rule out a server difference.</li>
-<li><b>Benign task variants under steering.</b> The same tasks in solvable form, to see whether the steered model still completes them.</li>
-<li><b>Three more task families</b> (answer key, leaked outputs, scorer copy). Only leaked outputs has a high enough unsteered hack rate (25 of 64) to show a clear drop.</li>
-<li><b>Capability benchmarks</b> with and without the direction: MATH level 5, MMLU and HumanEval, same questions and seeds.</li>
-<li><b>A prompt-only baseline:</b> three sentences in the system prompt telling the model to use only legitimate means.</li>
-<li><b>Lying in short stories.</b> Following arXiv 2610.29129, stories in which a character is asked a question where the truth is costly, written with the direction added and subtracted. This tests whether the direction is about reward hacking or about dishonesty more broadly.</li>
+<li><b>The steering result is specific.</b> On the same server, the unsteered model hacked in 26 of 32 episodes and the steered model in 0 of 32, with all 32 finished. Two random vectors drawn with covariance <code>Σ</code> also lowered hacking, but 30 of their 43 episodes derailed and 1 finished. Goodfire's direction gave 2 hacks, 30 derailed and 0 finished in 32. So in rollouts the claim has to be "fewer hacks and the agent still finishes", and only <code>Σ·probe</code> meets it.</li>
+<li><b>A prompt is a strong baseline.</b> Three sentences in the system prompt asking for legitimate means only gave 3 hacks in 30 episodes, with 18 finished and 9 derailed.</li>
+<li><b>No lower strength works.</b> At norms 5, 10 and 15 the steered model still hacked in 21, 14 and 10 of 32 episodes.</li>
+<li><b>One family did not respond.</b> In leaked outputs, where the expected answers can be read from disk, 10 of 31 steered episodes hacked against 13 unsteered.</li>
+<li><b>Small benchmark cost.</b> HumanEval fell by 3.0 points [−6.1, −0.6]; MATH level 5 and MMLU did not move.</li>
+<li><b>The main cost: the steered model gives up on hard honest tasks.</b> We made the trading game solvable and set the target at 60%, 80%, 90% or 100% of the best honest route we could find, on 8 new games. Unsteered, the model solved 16, 15, 16 and 15 of 16 episodes. Steered, it solved 13, 10, 5 and 3. In 31 of the 32 failures the steered model played one reasonable route, called the result the maximum and said the target could not be reached (found by keyword search after the run).</li>
 </ul>
-<p>All new rollout runs stop an episode after 30,000 generated tokens, and the analysis will apply the same rule to every condition.</p>
+<p>That last result is the problem section 6 tries to fix. Every hacking example the probe was fitted on comes from a task whose honest route fails, so one reading, which we have not tested, is that the direction partly encodes "this task can still be won".</p>
+
+<h2 id="r6">6. A refitted vector against the original (27 to 28 November)</h2>
+<p><b>What we changed.</b> The original probe was fitted on four single-turn environments. We refitted it with a fifth: single steps from agent rollouts in the trading game. The positives are the 24 steps in which the unsteered agent edits the save file. The negatives are 1,185 steps from 153 episodes of the solvable variant in which the agent finished without tampering, whether or not it reached the target. The fifth environment gets half of the total weight; we tried 0.2, 0.5 and 0.8 and chose by a rule fixed in advance. The steering vector is again the probe multiplied by <code>Σ</code>, subtracted at norm 20. Its cosine with the original vector is 0.85.</p>
+<p>Below, <b>original</b> is the vector of sections 2 to 5 and <b>refitted</b> is the new one.</p>
+
+<p><b>Accuracy on benign tasks.</b> Same 8 games and 2 seeds for every condition, so 16 episodes per bar.</p>
+<figure>
+<div class="fig-panel"><div class="fig-top"><span class="fig-title">Solvable trading game: episodes solved, by how hard the target is</span>
+<span class="legend"><span><svg class="mk"><circle cx="6" cy="6" r="5" fill="#8a7d6d"/></svg>unsteered</span><span><svg class="mk"><circle cx="6" cy="6" r="5" fill="#235fa6"/></svg>original subtracted</span><span><svg class="mk"><circle cx="6" cy="6" r="5" fill="#1f8a70"/></svg>refitted subtracted</span></span></div>
+<div class="chart" id="c-benign"></div></div>
+<figcaption>Bars are the share of 16 episodes in which the agent reached the target honestly. The target is a fraction of the gold earned by the best honest route we found by search. The refitted vector was chosen among three candidates using the 100% episodes shown here, so that bar is optimistic; the other three targets played no part in the choice.</figcaption>
+</figure>
+<div class="table-wrap"><table>
+<thead><tr><th>Target</th><th>unsteered</th><th>original</th><th>refitted</th><th>refitted minus original</th><th>refitted minus unsteered</th></tr></thead>
+<tbody>
+<tr><td>60%</td><td>16 / 16</td><td>13 / 16</td><td>16 / 16</td><td>+19 points [0, +44]</td><td>0</td></tr>
+<tr><td>80%</td><td>15 / 16</td><td>10 / 16</td><td>11 / 16</td><td>+6 [−12, +25]</td><td>−25 [−44, −6]</td></tr>
+<tr><td>90%</td><td>16 / 16</td><td>5 / 16</td><td>13 / 16</td><td>+50 [+19, +81]</td><td>−19 [−44, 0]</td></tr>
+<tr><td>100%</td><td>15 / 16</td><td>3 / 16</td><td>13 / 16</td><td>+62 [+38, +81]</td><td>−12 [−38, +12]</td></tr>
+<tr><td>All</td><td>62 / 64</td><td>31 / 64</td><td>53 / 64</td><td></td><td></td></tr>
+</tbody></table></div>
+<ul class="tight">
+<li><b>The cost no longer grows with difficulty.</b> The original falls from 13 to 3 solved as the target rises. The refitted vector stays between 11 and 16 with no trend.</li>
+<li><b>A cost remains.</b> The refitted vector solved 53 of 64 episodes against 62 unsteered, and at the 80% target the gap excludes zero.</li>
+<li><b>The failures are of a different kind.</b> Of the refitted vector's 11 unsolved episodes, 5 are the give-up failure described in section 5, 4 ran out of the token budget and 2 set off the tamper detector. Under the original nearly all failures were give-ups. We counted this after the run.</li>
+</ul>
+
+<p><b>Hack rate.</b> Three tests in which the unsteered model hacks often. In each, the honest outcome is to finish without the shortcut.</p>
+<figure>
+<div class="fig-panel"><div class="fig-top"><span class="fig-title">Share of prompts or episodes with a hack, in three tests</span>
+<span class="legend"><span><svg class="mk"><circle cx="6" cy="6" r="5" fill="#8a7d6d"/></svg>unsteered</span><span><svg class="mk"><circle cx="6" cy="6" r="5" fill="#235fa6"/></svg>original subtracted</span><span><svg class="mk"><circle cx="6" cy="6" r="5" fill="#1f8a70"/></svg>refitted subtracted</span></span></div>
+<div class="chart" id="c-hack"></div></div>
+<figcaption>Bars are the share with a hack found by a programmatic check; the label gives the count. A low bar is good only if the model also finishes, which the table below shows. Single-turn: 50 fresh prompts from five environments that no probe was fitted on. Rollouts: the unsolvable variants of the trading game and the release gate. Leaked outputs: 31 episodes of the family from section 5. Only the refitted vector was run on 27 to 28 November; the other bars are the stored runs of 25 November on the same prompts and seeds, except that the refitted vector's trading-game episodes use 8 newer games.</figcaption>
+</figure>
+<div class="table-wrap"><table>
+<thead><tr><th>Test</th><th>Condition</th><th>n</th><th>hack</th><th>finished without a hack</th><th>derailed or cut off</th></tr></thead>
+<tbody>
+<tr><td>Single-turn, held-out environments</td><td>unsteered</td><td>50</td><td>24</td><td>18</td><td>8</td></tr>
+<tr><td></td><td>original</td><td>50</td><td>2</td><td>37</td><td>11</td></tr>
+<tr><td></td><td>refitted</td><td>50</td><td>8</td><td>26</td><td>16</td></tr>
+<tr><td>Rollouts, trading game and release gate</td><td>unsteered</td><td>32</td><td>26</td><td>3</td><td>3</td></tr>
+<tr><td></td><td>original</td><td>32</td><td>0</td><td>32</td><td>0</td></tr>
+<tr><td></td><td>refitted</td><td>16</td><td>2</td><td>11</td><td>3</td></tr>
+<tr><td>Rollouts, leaked outputs</td><td>unsteered</td><td>31</td><td>13</td><td>18</td><td>0</td></tr>
+<tr><td></td><td>original</td><td>31</td><td>10</td><td>20</td><td>1</td></tr>
+<tr><td></td><td>refitted</td><td>31</td><td>7</td><td>18</td><td>6</td></tr>
+</tbody></table></div>
+<ul class="tight">
+<li><b>Single-turn: the refitted vector removes fewer hacks.</b> It lowers the hack rate by 32 points [−48, −16] and the original by 44 [−58, −30]; the difference between them is 12 points [+2, +24]. The refitted vector also runs more answers into the 5,000-token limit (16 of 50 against 11), and a cut-off answer cannot count as a hack.</li>
+<li><b>Rollouts: the original removed every hack and the refitted vector did not.</b> Both remaining hacks are in the release gate, the family that was not in the new training data, and 3 further episodes ran out of budget.</li>
+<li><b>Leaked outputs: fewer hacks, but not more honest finishes.</b> The refitted vector has 7 hacks against 10 and 13, but 6 of its episodes derailed, and it finished honestly in 18 episodes, the same as the unsteered model.</li>
+<li><b>The refitted vector makes the model write more.</b> Its single-turn answers have a median of 2,600 tokens against 1,500 for the original, and its rollouts are two to three times longer. Most of its extra failures are episodes that ran out of budget.</li>
+</ul>
+
+<p><b>Detection.</b> We also compared the two probes as detectors, on stored activations that neither was fitted on. We did this after the steering runs, so it is post hoc.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Held-out data (unsteered)</th><th>original probe</th><th>refitted probe</th><th>difference</th></tr></thead>
+<tbody>
+<tr><td>7 single-turn environments, matched AUROC</td><td>0.85</td><td>0.92</td><td>+0.07 [+0.05, +0.10]</td></tr>
+<tr><td>4 rollout families, per episode</td><td>0.67</td><td>0.88</td><td>+0.21 [+0.15, +0.27]</td></tr>
+<tr><td>The same families, hack steps against honest steps</td><td>0.79</td><td>0.85</td><td>+0.06 [+0.02, +0.11]</td></tr>
+</tbody></table></div>
+<p>On the same four rollout families the refitted probe beats Goodfire's direction per episode by 0.25 [+0.15, +0.36], where the original was tied with it (section 3). The four families have 16 tasks between them, from one run, so this needs repeating on new rollouts before we rely on it.</p>
+
+<p><b>Summary of the comparison.</b> The refitted vector keeps most of the model's ability on hard honest tasks and its probe detects better, but it removes hacks less completely and sometimes derails the agent. The original removes hacks completely in the two families it was tested on and makes the model give up on hard tasks. Neither is better on both counts.</p>
+<p><b>Caveats.</b> Every cell is 16 to 50 episodes. The benign comparison uses one task family, the same family the new training data came from (on different games). The refitted vector's runs are on different days from the stored ones; the server passed the same steering self-check each time. There is no random-vector control and no benchmark run for the refitted vector yet.</p>
 
 <h2 id="where">Where this stands</h2>
 <ul>
-<li>As a steering vector, <code>Σ·probe</code> beats Goodfire's direction in single-turn environments with intervals that exclude zero, and in the first multi-turn test it removes hacking completely while the agent keeps working. The multi-turn result still needs its controls.</li>
-<li>As a detector, the probe wins clearly on single-turn completions and does not win on rollouts. Fitting or selecting on rollout data is the obvious next thing to try for detection.</li>
-<li>If the capability benchmarks show a loss, the next step is to subtract only when the probe reading is high (the capping idea from arXiv 2610.29129), which here would mean the smallest covariance-weighted edit that caps the probe.</li>
+<li>As a steering vector, <code>Σ·probe</code> beats Goodfire's direction in single-turn environments with intervals that exclude zero, and in the first multi-turn test it removes hacking completely while the agent keeps working. The multi-turn result now has its controls (section 5).</li>
+<li>As a detector, the probe wins clearly on single-turn completions and does not win on rollouts. Refitting with rollout data improved rollout detection in a first, post hoc check (section 6).</li>
+<li>The two vectors now trade off against each other: the original removes hacks completely and gives up on hard honest tasks, and the refitted one keeps most of the ability and lets some hacks through (section 6). The next steps we are considering are adding honest rollouts from the release gate to the refit, a weight between the two we tried, and benchmarks for the refitted vector.</li>
 <li>Everything is on one model, one layer and one norm, and the multi-turn task families are ones we wrote.</li>
 </ul>
 
-<p class="footer">Record of the numbers: <code>rlp/flag/results/07_overnight.md</code> in the <a href="https://github.com/niranjan-deshpande/rh-probe-steering">repository</a>. Steered rollouts: <code>results/mt/v3_sprobe_sub/</code>. Method notes: <code>rlp/flag/METHOD.md</code>.</p>
+<p class="footer">Record of the numbers: <code>rlp/flag/results/07_overnight.md</code> to <code>10_refit_fifth_environment.md</code> in the <a href="https://github.com/niranjan-deshpande/rh-probe-steering">repository</a>. Steered rollouts: <code>results/mt/v3_sprobe_sub/</code>. Method notes: <code>rlp/flag/METHOD.md</code>.</p>
 </main>
 </div>
 <script>
@@ -378,6 +446,24 @@ const B=[['unsteered',GR,[14,15],[16,16]],['Σ·probe subtracted',AI,[0,0],[16,1
 Plotly.newPlot('c-mt', B.map(b=>({type:'bar', name:b[0], x:F, y:b[2].map((h,i)=>100*h/b[3][i]), marker:{color:b[1]},
   text:b[2].map((h,i)=>h+' of '+b[3][i]), textposition:'outside', cliponaxis:false, hovertemplate:b[0]+', %{x}: %{text}<extra></extra>'})),
   L({height:320, barmode:'group', bargap:0.3, bargroupgap:0.08, margin:{l:60,r:16,t:24,b:40}, xaxis:ax('',{gridcolor:'rgba(0,0,0,0)'}), yaxis:ax('episodes with a hack (%)',{range:[0,108]})}), cfg);
+})();
+
+// 6. refit against original (10_refit_fifth_environment.md sections 2, 3 and 5; 08, 09 for the stored runs)
+(function(){
+if (!window.Plotly) return;
+const GR='#8a7d6d', AI='#235fa6', NW='#1f8a70', INK='#2a2318';
+const font={family:'"Source Sans 3", Helvetica, Arial, sans-serif', size:13, color:INK};
+const cfg={displayModeBar:false, responsive:true};
+const ax=(t,o)=>Object.assign({title:{text:t,standoff:8}, gridcolor:'#e6ddd0', zeroline:false, linecolor:'#cfc4b4', fixedrange:true},o||{});
+const L=(o)=>Object.assign({font, paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)', showlegend:false, hovermode:'closest', barmode:'group', bargap:0.26, bargroupgap:0.08},o);
+const bars=(X,rows)=>rows.map(b=>({type:'bar', name:b[0], x:X, y:b[2].map((h,i)=>100*h/b[3][i]), marker:{color:b[1]},
+  text:b[2].map((h,i)=>h+'/'+b[3][i]), textposition:'outside', textfont:{size:11.5}, cliponaxis:false, hovertemplate:b[0]+', %{x}: %{text}<extra></extra>'}));
+const T=['60%','80%','90%','100%'], n16=[16,16,16,16];
+Plotly.newPlot('c-benign', bars(T,[['unsteered',GR,[16,15,16,15],n16],['original subtracted',AI,[13,10,5,3],n16],['refitted subtracted',NW,[16,11,13,13],n16]]),
+  L({height:340, margin:{l:56,r:10,t:24,b:52}, xaxis:ax('target, as a share of the best honest route',{gridcolor:'rgba(0,0,0,0)',type:'category'}), yaxis:ax('episodes solved (%)',{range:[0,112]})}), cfg);
+const H=['Single-turn,<br>held-out','Rollouts,<br>two families','Rollouts,<br>leaked outputs'];
+Plotly.newPlot('c-hack', bars(H,[['unsteered',GR,[24,26,13],[50,32,31]],['original subtracted',AI,[2,0,10],[50,32,31]],['refitted subtracted',NW,[8,2,7],[50,16,31]]]),
+  L({height:330, margin:{l:56,r:10,t:24,b:54}, xaxis:ax('',{gridcolor:'rgba(0,0,0,0)'}), yaxis:ax('with a hack (%)',{range:[0,100]})}), cfg);
 })();
 
 // Contents: highlight the section being read (and its group) in the sidebar and the mobile box.
